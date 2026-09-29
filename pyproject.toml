@@ -1,0 +1,48 @@
+[project]
+name = "quest-user-firmware-installer"
+version = "1.0.0"
+description = "Convert a userdebug Meta Quest 3 back to user firmware."
+readme = "README.md"
+authors = [{ name = "wkusnierczyk", email = "waclaw.kusnierczyk@gmail.com" }]
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+dependencies = []
+classifiers = [
+    "Environment :: Console",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+]
+
+[project.optional-dependencies]
+# Supplies a CA bundle where the system one is missing (e.g. python.org builds on macOS).
+certifi = ["certifi"]
+
+[project.urls]
+Source = "https://github.com/wkusnierczyk/quest"
+Issues = "https://github.com/wkusnierczyk/quest/issues"
+
+[project.scripts]
+quest = "quest.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[build-system]
+requires = ["uv_build>=0.7.12,<0.8"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "quest"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B", "I"]
